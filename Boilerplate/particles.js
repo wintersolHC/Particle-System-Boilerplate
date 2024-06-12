@@ -75,3 +75,6 @@ class Particle {
     if (this.y < 0 + this.radius) this.vy *= -1;
   }
 }
+
+const cluster = new Cluster();
+cluster.animate();
