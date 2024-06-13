@@ -70,7 +70,7 @@ export class Cluster {
         return;
       }
     this.#render();
-    requestAnimationFrame(this.animate.bind(this));
+    requestAnimationFrame(this.#animate.bind(this));
   }
 
   off() {
