@@ -37,5 +37,6 @@ cluster.on(); // Starts animation & adds window event listener for resizing
 
 Contributions are welcome! If you have any suggestions, bug reports, or improvements, please open an issue or submit a pull request.
 
-License
+**License**
+
 This project is licensed under the MIT License. See the LICENSE file for more details.
