@@ -2,20 +2,34 @@
 
 export class Cluster {
   constructor() {
-    this.canvas = document.createElement("canvas");
-    this.ctx = this.canvas.getContext("2d");
     this.particleAmount = 10;
+    this.maxSpeed = 2;
+    this.particleRadius = 10;
+    this.particlesColor = "black";
+
+    this.animationIsInfinite = false;
+    this.duration = 1000;
+    this.counter = 0;
+    this.animationOver = false;
+
     this.particles = [];
 
-    this.animationOver = false;
-    this.counter = 0;
-    this.duration = 1000;
+    this.canvas = document.createElement("canvas");
+    this.ctx = this.canvas.getContext("2d");
+
     this.init();
   }
   init() {
     this.#setCanvasSize();
     for (let i = 0; i < this.particleAmount; i++) {
-      this.particles.push(new Particle(this.canvas));
+      this.particles.push(
+        new Particle(
+          this.canvas,
+          this.maxSpeed,
+          this.particleRadius,
+          this.particlesColor
+        )
+      );
     }
   }
 
@@ -32,25 +46,28 @@ export class Cluster {
       this.particles[i].draw(this.ctx);
       this.particles[i].update();
     }
-    this.counter++;
-    if (this.counter >= this.duration) this.animationOver = true;
+    if (!this.animationIsInfinite) {
+      this.counter++;
+      if (this.counter >= this.duration) this.animationOver = true;
+    }
   }
 
   animate() {
-    if (this.animationOver) return;
+    if (!this.animationIsInfinite) if (this.animationOver) return;
     this.render();
     requestAnimationFrame(this.animate.bind(this));
   }
 }
 
 class Particle {
-  constructor(canvas) {
+  constructor(canvas, maxSpeed, radius, color) {
     this.x = Math.random() * window.innerWidth;
     this.y = Math.random() * window.innerHeight;
-    this.vx = Math.random() * 4 - 2;
-    this.vy = Math.random() * 4 - 2;
+    this.vx = Math.random() * (maxSpeed * 2) - maxSpeed * -1;
+    this.vy = Math.random() * (maxSpeed * 2) - maxSpeed * -1;
 
-    this.radius = 10;
+    this.radius = radius;
+    this.color = color;
 
     this.maxX = canvas.width;
     this.maxY = canvas.height;
@@ -62,7 +79,8 @@ class Particle {
   draw(ctx) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.stroke();
+    ctx.fillStyle = this.color;
+    ctx.fill();
   }
 
   update() {
