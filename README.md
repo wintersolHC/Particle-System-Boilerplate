@@ -26,6 +26,12 @@ Inside this same class, there's a time limit that you can disable at any time.
 ```
 this.animationIsInfinite = false;
 ```
+Once created an instance of class Cluster, the animation can be switched on and off with the following methods.
+```
+const cluster = new Cluster();
+cluster.on(); // Starts animation & adds window event listener for resizing
+// cluster.off() // Stops animation & removes window event listener for resizing
+```
 
 **Contributing**
 
