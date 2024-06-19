@@ -5,7 +5,7 @@ export class Cluster {
     this.particleAmount = 10;
     this.maxSpeed = 2;
     this.particleRadius = 10;
-    this.particlesColor = "black";
+    this.particleColor = "black";
 
     this.animationIsInfinite = false;
     this.duration = 1000;
@@ -31,7 +31,7 @@ export class Cluster {
           this.canvas,
           this.maxSpeed,
           this.particleRadius,
-          this.particlesColor
+          this.particleColor
         )
       );
     }
