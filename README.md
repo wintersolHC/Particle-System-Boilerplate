@@ -20,7 +20,7 @@ To customize the particle system, you can modify the following variables inside 
 this.particleAmount = 10;
 this.maxSpeed = 2;
 this.particleRadius = 10;
-this.particlesColor = "black";
+this.particleColor = "black";
 ```
 Inside this same class, there's a time limit that you can disable at any time.
 ```
